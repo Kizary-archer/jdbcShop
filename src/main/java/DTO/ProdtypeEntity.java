@@ -1,4 +1,4 @@
-package Entityes;
+package DTO;
 
 import java.util.Objects;
 

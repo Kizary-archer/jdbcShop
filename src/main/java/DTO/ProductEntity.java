@@ -1,4 +1,4 @@
-package Entityes;
+package DTO;
 
 import java.util.Objects;
 
@@ -8,6 +8,16 @@ public class ProductEntity {
     private Integer manufacture;
     private Integer type;
     private Long price;
+
+    public ProductEntity(Integer idproduct, String nameprod, Integer manufacture, Integer type, Long price) {
+        this.idproduct = idproduct;
+        this.nameprod = nameprod;
+        this.manufacture = manufacture;
+        this.type = type;
+        this.price = price;
+    }
+
+    public ProductEntity(){}
 
     public Integer getIdproduct() {
         return idproduct;

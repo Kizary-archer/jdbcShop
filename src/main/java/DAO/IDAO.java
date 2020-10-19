@@ -5,17 +5,13 @@ import Util.DBConnectUtil;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Map;
 
 public interface IDAO<T> {
-    default Statement getStatement() {
-        try (Connection connection = DBConnectUtil.getConnection()) {
-            return connection.createStatement();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return null;
-        }
+    default Connection getConnection() {
+        return DBConnectUtil.getConnection();
     }
-    void add(T t);
-    void del(T t);
-    void upd(T t);
+    boolean add(T t) throws SQLException;
+    boolean del(T t);
+    Map<Integer,T> list() throws SQLException;
 }

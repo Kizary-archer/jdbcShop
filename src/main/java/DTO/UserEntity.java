@@ -1,4 +1,4 @@
-package Entityes;
+package DTO;
 
 import java.util.Objects;
 
@@ -6,6 +6,15 @@ public class UserEntity {
     private Integer iduser;
     private String login;
     private String password;
+
+    public UserEntity() {
+    }
+
+    public UserEntity(Integer id, String login, String pass) {
+        this.iduser = id;
+        this.login = login;
+        this.password = pass;
+    }
 
     public Integer getIduser() {
         return iduser;
