@@ -1,6 +1,4 @@
 .idea
-*.iml
 out
-gen
-src/
 target/
+/jdbcShop.iml
