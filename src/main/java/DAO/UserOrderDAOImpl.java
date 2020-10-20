@@ -10,7 +10,7 @@ import DTOBuilder.UserOrderViewBuilder;
 import java.sql.*;
 import java.util.*;
 
-public class UserOrderDAOImpl implements IDAO<UserOrderEntity> {
+public class UserOrderDAOImpl implements IUserOrderDAO {
 
     @Override
     public boolean add(UserOrderEntity userOrderEntity) {

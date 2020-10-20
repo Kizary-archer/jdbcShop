@@ -12,7 +12,7 @@ import java.util.Map;
 public class UserDAOImpl implements IUserDAO {
 
     @Override
-    public boolean add(UserEntity userEntity){
+    public boolean add(UserEntity userEntity) {
         Connection connection = getConnection();
         try {
             String sql = "INSERT INTO public.\"user\" (login,\"password\") VALUES (?,?)";
@@ -39,18 +39,26 @@ public class UserDAOImpl implements IUserDAO {
         }
         return false;
     }
-public UserEntity getUserByLogin(String login){
-    Connection connection = getConnection();
-    try {
-        String sql = "select * from public.\"user\" where iduser = ?";
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setString(1, login);
-        return (UserEntity)preparedStatement.executeQuery();
-    } catch (SQLException e) {
-        e.printStackTrace();
+
+    public UserEntity getUserByLogin(String login) {
+        Connection connection = getConnection();
+        try {
+            String sql = "select * from public.\"user\" where login = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, login);
+            ResultSet rs = preparedStatement.executeQuery();
+            rs.next();
+            return new UserBuilder()
+                    .setIduser(rs.getInt("iduser"))
+                    .setLogin(rs.getString("login"))
+                    .setPassword(rs.getString("password"))
+                    .build();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
-    return null;
-}
+
     @Override
     public List<UserEntity> list() {
         List<UserEntity> res = new LinkedList<>();
