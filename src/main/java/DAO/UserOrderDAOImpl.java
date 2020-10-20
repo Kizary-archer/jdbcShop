@@ -62,4 +62,25 @@ public class UserOrderDAOImpl implements IDAO<UserOrderEntity> {
         }
         return res;
     }
+    public Map<Integer, UserOrderEntity> listUserOrder(UserEntity userEntity) {
+        Map<Integer, UserOrderEntity> res = new HashMap<>();
+        try {
+            String sql = "select distinct * from public.userorder where \"user\" = ?";
+            PreparedStatement preparedStatement = getConnection().prepareStatement(sql);
+            preparedStatement.setInt(1, userEntity.getIduser());
+            ResultSet uos = preparedStatement.executeQuery(sql);
+            while (uos.next()) {
+                UserOrderEntity uOrder = new UserOrderBuilder()
+                        .setIdorder(uos.getInt("idorder"))
+                        .setIdorder(uos.getInt("user"))
+                        .setIdorder(uos.getInt("product"))
+                        .setIdorder(uos.getInt("count"))
+                        .build();
+                res.putIfAbsent(uOrder.getIdorder(), uOrder);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return res;
+    }
 }
