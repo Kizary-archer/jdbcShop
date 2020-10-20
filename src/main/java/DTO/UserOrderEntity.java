@@ -2,11 +2,20 @@ package DTO;
 
 import java.util.Objects;
 
-public class UserorderEntity {
+public class UserOrderEntity {
+
     private Integer idorder;
     private Integer user;
     private Integer product;
     private Integer count;
+
+    public UserOrderEntity(){}
+    public UserOrderEntity(Integer idorder, Integer user, Integer product, Integer count) {
+        this.idorder = idorder;
+        this.user = user;
+        this.product = product;
+        this.count = count;
+    }
 
     public Integer getIdorder() {
         return idorder;
@@ -44,7 +53,7 @@ public class UserorderEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        UserorderEntity that = (UserorderEntity) o;
+        UserOrderEntity that = (UserOrderEntity) o;
         return Objects.equals(idorder, that.idorder) &&
                 Objects.equals(user, that.user) &&
                 Objects.equals(product, that.product) &&

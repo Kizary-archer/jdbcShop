@@ -2,9 +2,18 @@ package DTO;
 
 import java.util.Objects;
 
-public class ProdtypeEntity {
+public class ProdTypeEntity {
+
     private Integer idtype;
     private String typename;
+
+    public ProdTypeEntity() {
+    }
+
+    public ProdTypeEntity(Integer idtype, String typename) {
+        this.idtype = idtype;
+        this.typename = typename;
+    }
 
     public Integer getIdtype() {
         return idtype;
@@ -26,7 +35,7 @@ public class ProdtypeEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ProdtypeEntity that = (ProdtypeEntity) o;
+        ProdTypeEntity that = (ProdTypeEntity) o;
         return Objects.equals(idtype, that.idtype) &&
                 Objects.equals(typename, that.typename);
     }

@@ -6,6 +6,14 @@ public class ManufactureEntity {
     private Integer idmanuf;
     private String namemanuf;
 
+    public ManufactureEntity() {
+    }
+
+    public ManufactureEntity(Integer idmanuf, String namemanuf) {
+        this.idmanuf = idmanuf;
+        this.namemanuf = namemanuf;
+    }
+
     public Integer getIdmanuf() {
         return idmanuf;
     }
