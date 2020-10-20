@@ -7,6 +7,8 @@ import DTOBuilder.UserBuilder;
 
 import java.sql.*;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 public class ProductDAOImpl implements IDAO<ProductEntity> {
@@ -42,8 +44,8 @@ public class ProductDAOImpl implements IDAO<ProductEntity> {
     }
 
     @Override
-    public Map<Integer, ProductEntity> list() throws SQLException {
-        Map<Integer, ProductEntity> res = new HashMap<>();
+    public List<ProductEntity> list() throws SQLException {
+        List<ProductEntity> res = new LinkedList<>();
         try {
             Statement statement = getConnection().createStatement();
             String sql = "select distinct * from public.product";
@@ -56,7 +58,7 @@ public class ProductDAOImpl implements IDAO<ProductEntity> {
                         .setType(ps.getInt("type"))
                         .setPrice(ps.getLong("price"))
                         .build();
-                res.putIfAbsent(product.getIdproduct(), product);
+                res.add(product);
             }
         } catch (SQLException e) {
             e.printStackTrace();

@@ -7,6 +7,8 @@ import DTOBuilder.UserBuilder;
 
 import java.sql.*;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 public class ManufactureDAOImpl implements IDAO<ManufactureEntity> {
@@ -40,8 +42,8 @@ public class ManufactureDAOImpl implements IDAO<ManufactureEntity> {
     }
 
     @Override
-    public Map<Integer, ManufactureEntity> list() {
-        Map<Integer, ManufactureEntity> res = new HashMap<>();
+    public List<ManufactureEntity> list() {
+        List<ManufactureEntity> res = new LinkedList<>();
         try {
             Statement statement = getConnection().createStatement();
             String sql = "select distinct * from public.manufacture";
@@ -51,7 +53,7 @@ public class ManufactureDAOImpl implements IDAO<ManufactureEntity> {
                         .setIdmanuf(ms.getInt("idmanuf"))
                         .setNamemanuf(ms.getString("namemanuf"))
                         .build();
-                res.putIfAbsent(manuf.getIdmanuf(), manuf);
+                res.add(manuf);
             }
         } catch (SQLException e) {
             e.printStackTrace();

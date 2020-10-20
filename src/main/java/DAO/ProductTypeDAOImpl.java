@@ -5,6 +5,8 @@ import DTOBuilder.ProdTypeBuilder;
 
 import java.sql.*;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 public class ProductTypeDAOImpl implements IDAO<ProdTypeEntity> {
@@ -38,8 +40,8 @@ public class ProductTypeDAOImpl implements IDAO<ProdTypeEntity> {
     }
 
     @Override
-    public Map<Integer, ProdTypeEntity> list() {
-        Map<Integer, ProdTypeEntity> res = new HashMap<>();
+    public List<ProdTypeEntity> list() {
+        List<ProdTypeEntity> res = new LinkedList<>();
         try {
             Statement statement = getConnection().createStatement();
             String sql = "select distinct * from public.prodtype";
@@ -49,7 +51,7 @@ public class ProductTypeDAOImpl implements IDAO<ProdTypeEntity> {
                         .setIdtype(pts.getInt("idtype"))
                         .setTypename(pts.getString("typename"))
                         .build();
-                res.putIfAbsent(pType.getIdtype(), pType);
+                res.add(pType);
             }
         } catch (SQLException e) {
             e.printStackTrace();

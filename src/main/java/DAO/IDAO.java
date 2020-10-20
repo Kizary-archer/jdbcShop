@@ -5,6 +5,7 @@ import Util.DBConnectUtil;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 import java.util.Map;
 
 public interface IDAO<T> {
@@ -13,5 +14,5 @@ public interface IDAO<T> {
     }
     boolean add(T t) throws SQLException;
     boolean del(T t);
-    Map<Integer,T> list() throws SQLException;
+    List<T> list() throws SQLException;
 }

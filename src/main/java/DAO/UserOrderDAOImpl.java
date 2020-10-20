@@ -2,12 +2,13 @@ package DAO;
 
 import DTO.UserEntity;
 import DTO.UserOrderEntity;
+import DTO.UserOrderViewEntity;
 import DTOBuilder.UserBuilder;
 import DTOBuilder.UserOrderBuilder;
+import DTOBuilder.UserOrderViewBuilder;
 
 import java.sql.*;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class UserOrderDAOImpl implements IDAO<UserOrderEntity> {
 
@@ -42,8 +43,8 @@ public class UserOrderDAOImpl implements IDAO<UserOrderEntity> {
     }
 
     @Override
-    public Map<Integer, UserOrderEntity> list() {
-        Map<Integer, UserOrderEntity> res = new HashMap<>();
+    public List<UserOrderEntity> list() {
+        List<UserOrderEntity> res = new LinkedList<>();
         try {
             Statement statement = getConnection().createStatement();
             String sql = "select distinct * from public.userorder";
@@ -55,28 +56,30 @@ public class UserOrderDAOImpl implements IDAO<UserOrderEntity> {
                         .setIdorder(uos.getInt("product"))
                         .setIdorder(uos.getInt("count"))
                         .build();
-                res.putIfAbsent(uOrder.getIdorder(), uOrder);
+                res.add(uOrder);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return res;
     }
-    public Map<Integer, UserOrderEntity> listUserOrder(UserEntity userEntity) {
-        Map<Integer, UserOrderEntity> res = new HashMap<>();
+    public List<UserOrderViewEntity> listUserOrder(UserEntity userEntity) {
+        List<UserOrderViewEntity> res = new LinkedList<>();
         try {
-            String sql = "select distinct * from public.userorder where \"user\" = ?";
+            String sql = "select distinct * from public.userorderview where \"user\" = ?";
             PreparedStatement preparedStatement = getConnection().prepareStatement(sql);
             preparedStatement.setInt(1, userEntity.getIduser());
             ResultSet uos = preparedStatement.executeQuery(sql);
             while (uos.next()) {
-                UserOrderEntity uOrder = new UserOrderBuilder()
-                        .setIdorder(uos.getInt("idorder"))
-                        .setIdorder(uos.getInt("user"))
-                        .setIdorder(uos.getInt("product"))
-                        .setIdorder(uos.getInt("count"))
+                UserOrderViewEntity uOrder = new UserOrderViewBuilder()
+                        .setNameprod(uos.getString("nameprod"))
+                        .setTypename(uos.getString("typename"))
+                        .setNamemanuf(uos.getString("namemanuf"))
+                        .setPrice(uos.getLong("price"))
+                        .setCount(uos.getInt("count"))
+                        .setFinalprice(uos.getLong("finalprice"))
                         .build();
-                res.putIfAbsent(uOrder.getIdorder(), uOrder);
+                res.add(uOrder);
             }
         } catch (SQLException e) {
             e.printStackTrace();

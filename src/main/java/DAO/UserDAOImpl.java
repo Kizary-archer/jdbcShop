@@ -5,6 +5,8 @@ import DTOBuilder.UserBuilder;
 
 import java.sql.*;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 public class UserDAOImpl implements IUserDAO {
@@ -50,8 +52,8 @@ public UserEntity getUserByLogin(String login){
     return null;
 }
     @Override
-    public Map<Integer, UserEntity> list() {
-        Map<Integer, UserEntity> res = new HashMap<>();
+    public List<UserEntity> list() {
+        List<UserEntity> res = new LinkedList<>();
         try {
             Statement statement = getConnection().createStatement();
             String sql = "select distinct * from public.\"user\"";
@@ -62,7 +64,7 @@ public UserEntity getUserByLogin(String login){
                         .setLogin(us.getString("login"))
                         .setPassword(us.getString("password"))
                         .build();
-                res.putIfAbsent(user.getIduser(), user);
+                res.add(user);
             }
         } catch (SQLException e) {
             e.printStackTrace();
