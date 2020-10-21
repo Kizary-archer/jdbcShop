@@ -32,9 +32,10 @@ public class UserOrderDAOImpl implements IUserOrderDAO {
     public boolean del(UserOrderEntity userOrderEntity) {
         Connection connection = getConnection();
         try {
-            String sql = "delete from public.userorder where idorder = ?";
+            String sql = "delete from public.userorder where idorder = ? and \"user\" = ? ";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, userOrderEntity.getIdorder());
+            preparedStatement.setInt(2, userOrderEntity.getUser());
             if (preparedStatement.executeUpdate() > 0) return true;
         } catch (SQLException e) {
             e.printStackTrace();

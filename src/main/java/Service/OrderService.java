@@ -7,10 +7,8 @@ import DAO.ManufactureDAOImpl;
 import DAO.ProductDAOImpl;
 import DAO.ProductTypeDAOImpl;
 import DAO.UserOrderDAOImpl;
-import DTO.ManufactureEntity;
-import DTO.ProdTypeEntity;
-import DTO.ProductViewEntity;
-import DTO.UserOrderEntity;
+import DTO.*;
+import DTOBuilder.UserOrderBuilder;
 
 import java.util.List;
 
@@ -33,4 +31,11 @@ public class OrderService {
     public boolean addOrder(UserOrderEntity orderEntity){
         return userOrderDAO.add(orderEntity);
     }
-}
+
+    public List<UserOrderViewEntity> getUserOrder(UserEntity user) {
+        return userOrderDAO.listUserOrder(user);
+    }
+
+    public boolean deleteUserOrder(UserOrderEntity userOrderEntity) {
+        return userOrderDAO.del(userOrderEntity);
+    }}
