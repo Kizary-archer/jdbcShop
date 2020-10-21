@@ -20,7 +20,7 @@ public class StoreService {
         this.userService = userService;
     }
 
-    public void run() {
+    public void run() {//вторая страница магазина с функциями управления заказами пользователя
         try {
             while (true) {
                 System.out.println("Выберите действие:\n0)Выйти\n1)Заказать\n2)Список Заказов\n3)Удалить заказ");

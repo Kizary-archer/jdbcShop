@@ -9,7 +9,7 @@ import DTOBuilder.UserBuilder;
 
 import java.util.Objects;
 
-public class UserService {
+public class UserService {//сервис отвечающий за регистрацию и авторизацию(хранит авторизованного пользователя)
     private final IUserDAO userDAO = new UserDAOImpl();
     private final IUserOrderDAO userOrderDAO = new UserOrderDAOImpl();
     private UserEntity user;

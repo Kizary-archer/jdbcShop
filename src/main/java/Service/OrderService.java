@@ -1,41 +1,34 @@
 package Service;
 
-import DAO.IDAO.IDAO;
 import DAO.IDAO.IProductDAO;
 import DAO.IDAO.IUserOrderDAO;
-import DAO.ManufactureDAOImpl;
 import DAO.ProductDAOImpl;
-import DAO.ProductTypeDAOImpl;
 import DAO.UserOrderDAOImpl;
-import DTO.*;
-import DTOBuilder.UserOrderBuilder;
+import DTO.ProductViewEntity;
+import DTO.UserEntity;
+import DTO.UserOrderEntity;
+import DTO.UserOrderViewEntity;
 
 import java.util.List;
 
-public class OrderService {
-    IDAO<ProdTypeEntity> productTypeDAO = new ProductTypeDAOImpl();
-    IDAO<ManufactureEntity> manufactureDAO = new ManufactureDAOImpl();
+public class OrderService {//сервис работы с заказами пользователя
     IProductDAO productDAO = new ProductDAOImpl();
     IUserOrderDAO userOrderDAO = new UserOrderDAOImpl();
 
 
-    public List<ProdTypeEntity> prodTypeList(){
-        return productTypeDAO.list();
-    }
-    public List<ManufactureEntity> manufList(){
-        return manufactureDAO.list();
-    }
-    public List<ProductViewEntity> prodViewList(){
+    public List<ProductViewEntity> prodViewList() {//вывод списка товаров
         return productDAO.productViewList();
     }
-    public boolean addOrder(UserOrderEntity orderEntity){
+
+    public boolean addOrder(UserOrderEntity orderEntity) {//заказ товара
         return userOrderDAO.add(orderEntity);
     }
 
-    public List<UserOrderViewEntity> getUserOrder(UserEntity user) {
+    public List<UserOrderViewEntity> getUserOrder(UserEntity user) {//вывод списка заказов пользователя
         return userOrderDAO.listUserOrder(user);
     }
 
-    public boolean deleteUserOrder(UserOrderEntity userOrderEntity) {
+    public boolean deleteUserOrder(UserOrderEntity userOrderEntity) {//удаление заказа
         return userOrderDAO.del(userOrderEntity);
-    }}
+    }
+}

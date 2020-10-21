@@ -34,7 +34,7 @@ public class UserDAOImpl implements IUserDAO {
             preparedStatement.setInt(1, userEntity.getIduser());
             if (preparedStatement.executeUpdate() > 0) return true;
         } catch (SQLException e) {
-            e.printStackTrace();
+            return false;
         }
         return false;
     }
@@ -53,9 +53,8 @@ public class UserDAOImpl implements IUserDAO {
                     .setPassword(rs.getString("password"))
                     .build();
         } catch (SQLException e) {
-            e.printStackTrace();
+            return null;
         }
-        return null;
     }
 
     @Override
@@ -74,7 +73,7 @@ public class UserDAOImpl implements IUserDAO {
                 res.add(user);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            return null;
         }
         return res;
     }

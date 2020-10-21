@@ -48,7 +48,7 @@ public class UserOrderDAOImpl implements IUserOrderDAO {
         List<UserOrderEntity> res = new LinkedList<>();
         try {
             Statement statement = getConnection().createStatement();
-            String sql = "select distinct * from public.userorder";
+            String sql = "select distinct * from public.userorder order by idorder";
             ResultSet uos = statement.executeQuery(sql);
             while (uos.next()) {
                 UserOrderEntity uOrder = new UserOrderBuilder()
@@ -67,7 +67,7 @@ public class UserOrderDAOImpl implements IUserOrderDAO {
     public List<UserOrderViewEntity> listUserOrder(UserEntity userEntity) {
         List<UserOrderViewEntity> res = new LinkedList<>();
         try {
-            String sql = "select distinct * from public.userorderview where \"user\" = ?";
+            String sql = "select distinct * from public.userorderview where \"user\" = ? order by idorder";
             PreparedStatement preparedStatement = getConnection().prepareStatement(sql);
             preparedStatement.setInt(1, userEntity.getIduser());
             ResultSet uos = preparedStatement.executeQuery();

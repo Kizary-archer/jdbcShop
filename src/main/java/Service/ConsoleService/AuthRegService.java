@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class AuthRegService {
     UserService userService;
 
-    public void run() {
+    public void run() {//первая страница магазина(автор/регистр)
         try (Scanner scanner = ScannerFactoryUtil.getScanner()) {
             while (true) {
                 userService = new UserService();
