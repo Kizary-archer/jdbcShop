@@ -1,7 +1,7 @@
 package Service;
 
-import DAO.IUserDAO;
-import DAO.IUserOrderDAO;
+import DAO.IDAO.IUserDAO;
+import DAO.IDAO.IUserOrderDAO;
 import DAO.UserDAOImpl;
 import DAO.UserOrderDAOImpl;
 import DTO.UserEntity;

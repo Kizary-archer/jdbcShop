@@ -1,17 +1,16 @@
 package DAO;
 
+import DAO.IDAO.IProductDAO;
 import DTO.ProductEntity;
-import DTO.UserEntity;
+import DTO.ProductViewEntity;
 import DTOBuilder.ProductBuilder;
-import DTOBuilder.UserBuilder;
+import DTOBuilder.ProductViewBuilder;
 
 import java.sql.*;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
-public class ProductDAOImpl implements IDAO<ProductEntity> {
+public class ProductDAOImpl implements IProductDAO {
     @Override
     public boolean add(ProductEntity productEntity) throws SQLException {
         Connection connection = getConnection();
@@ -59,6 +58,29 @@ public class ProductDAOImpl implements IDAO<ProductEntity> {
                         .setPrice(ps.getLong("price"))
                         .build();
                 res.add(product);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return res;
+    }
+
+    @Override
+    public List<ProductViewEntity> productViewList() {
+        List<ProductViewEntity> res = new LinkedList<>();
+        try {
+            Statement statement = getConnection().createStatement();
+            String sql = "select distinct * from public.productview";
+            ResultSet ps = statement.executeQuery(sql);
+            while (ps.next()) {
+                ProductViewEntity productView = new ProductViewBuilder()
+                        .setIdproduct(ps.getInt("idproduct"))
+                        .setNameprod(ps.getString("nameprod"))
+                        .setNamemanuf(ps.getString("namemanuf"))
+                        .setTypename(ps.getString("typename"))
+                        .setPrice(ps.getLong("price"))
+                        .build();
+                res.add(productView);
             }
         } catch (SQLException e) {
             e.printStackTrace();

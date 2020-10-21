@@ -1,12 +1,13 @@
-package Service;
+package Service.ConsoleService;
 
 import DTO.UserEntity;
 import DTOBuilder.UserBuilder;
+import Service.UserService;
 import Util.ScannerFactoryUtil;
 
 import java.util.Scanner;
 
-public class ConsoleService {
+public class AuthRegService {
     UserService userService = new UserService();
 
     public void run() {
@@ -42,14 +43,12 @@ public class ConsoleService {
         }
     }
 
-    private boolean registration() {
+    private void registration() {
         System.out.println("Регистрация");
         if (userService.registration(inputLogAndPass())) {
             System.out.println("Регистрация прошла успешно");
-            return true;
         } else {
             System.out.println("Регистрация прошла неуспешно\nПопробуйте ввести другой логин");
-            return false;
         }
     }
 
