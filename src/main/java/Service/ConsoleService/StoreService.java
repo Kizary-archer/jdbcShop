@@ -39,7 +39,7 @@ public class StoreService {
                 }
             }
         } catch (Exception ex) {
-            ex.printStackTrace();
+            System.out.println("команда введена неверно ");
         }
     }
 
@@ -58,24 +58,37 @@ public class StoreService {
 
     private void delOrder() {
         System.out.println("Введите номер заказа");
-        if(userService.deleteUserOrder(scanner.nextInt())) System.out.println("Заказ удалён");
+        if (userService.deleteUserOrder(scanner.nextInt())) System.out.println("Заказ удалён");
         else System.out.println("Данного заказа не существует");
     }
-    private void addOrder(){
-        OrderService orderService = new OrderService();
-        ProductBuilder builder = new ProductBuilder();
-        System.out.println("Выберите категорию\n---------------------------");
-        orderService.prodTypeList().forEach(v ->
-                        System.out.println(v.getIdtype()+" : " + v.getTypename())
-                );
-        builder.setType(scanner.nextInt());
-        System.out.println("---------------------------\nВыберите компанию:\n---------------------------");
-        orderService.manufList().forEach(v ->
-                System.out.println(v.getIdmanuf()+" : " + v.getNamemanuf())
-        );
-        System.out.println("---------------------------");
-        builder.setManufacture(scanner.nextInt());
 
+    private void addOrder() {
+try {
+    OrderService orderService = new OrderService();
+    UserOrderBuilder builder = new UserOrderBuilder();
+    builder.setUser(userService.getUser().getIduser());
+    System.out.println("Список товаров\n---------------------------");
+    orderService.prodViewList().forEach(v ->
+            System.out.printf("Номер %d\nНазвание: %s\nПроизводитель: %s\nТип: %s\nЦена за шт: %s ",
+                    v.getIdproduct(), v.getNameprod(), v.getNamemanuf(), v.getTypename(), v.getPrice()
+                            + " руб\n---------------------------\n"));
+    System.out.println("Введите номер товара\n 0)Отмена");
+    int c = scanner.nextInt();
+    if (c == 0) return;
+    else builder.setProduct(c);
+    System.out.println("Введите количество товара\n 0)Отмена");
+    c = scanner.nextInt();
+    if (c == 0) return;
+    else builder.setCount(c);
+    System.out.println("1)Оформить заказ\n 0)Отмена");
+    c = scanner.nextInt();
+    if (c == 0) return;
+
+    if (orderService.addOrder(builder.build())) System.out.println("Заказ успешно оформлен");
+    else System.out.println("Заказ не оформлен");
+}catch (Exception e){
+    System.out.println("команда введена неверно ");
+}
     }
 }
 

@@ -25,11 +25,11 @@ public class AuthRegService {
                         registration();
                         break;
                     default:
-                        System.out.println("как ты попал сюда дядя!!!");
+                        System.out.println("Такой команды нет");
                 }
             }
         } catch (Exception ex) {
-            ex.printStackTrace();
+            System.out.println("команда введена неверно ");
         }
     }
 
