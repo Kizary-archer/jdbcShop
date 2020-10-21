@@ -8,17 +8,18 @@ import Util.ScannerFactoryUtil;
 import java.util.Scanner;
 
 public class AuthRegService {
-    UserService userService = new UserService();
+    UserService userService;
 
     public void run() {
         try (Scanner scanner = ScannerFactoryUtil.getScanner()) {
             while (true) {
+                userService = new UserService();
                 System.out.println("Выберите действие:\n0)Завершить работу\n1)Войти\n2)Зарегистрироваться");
                 switch (scanner.nextInt()) {
                     case 0:
                         return;
                     case 1:
-                        if(authorization()) new StoreService(userService).run();
+                        if (authorization()) new StoreService(userService).run();
                         break;
                     case 2:
                         registration();

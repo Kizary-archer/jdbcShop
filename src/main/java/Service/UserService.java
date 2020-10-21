@@ -7,6 +7,7 @@ import DAO.UserOrderDAOImpl;
 import DTO.UserEntity;
 import DTO.UserOrderViewEntity;
 import DTOBuilder.UserBuilder;
+import DTOBuilder.UserOrderBuilder;
 
 import java.util.List;
 import java.util.Objects;
@@ -42,7 +43,13 @@ public class UserService {
         }
         return false;
     }
-    public List<UserOrderViewEntity> getUserOrder(){
+
+    public List<UserOrderViewEntity> getUserOrder() {
         return userOrderDAO.listUserOrder(user);
     }
+
+    public boolean deleteUserOrder(int idOrder) {
+        return userOrderDAO.del(new UserOrderBuilder().setIdorder(idOrder).build());
+    }
 }
+
