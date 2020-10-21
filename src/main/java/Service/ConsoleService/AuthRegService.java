@@ -18,7 +18,7 @@ public class AuthRegService {
                     case 0:
                         return;
                     case 1:
-                        authorization();
+                        if(authorization()) new StoreService(userService).run();
                         break;
                     case 2:
                         registration();

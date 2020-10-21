@@ -69,9 +69,10 @@ public class UserOrderDAOImpl implements IUserOrderDAO {
             String sql = "select distinct * from public.userorderview where \"user\" = ?";
             PreparedStatement preparedStatement = getConnection().prepareStatement(sql);
             preparedStatement.setInt(1, userEntity.getIduser());
-            ResultSet uos = preparedStatement.executeQuery(sql);
+            ResultSet uos = preparedStatement.executeQuery();
             while (uos.next()) {
                 UserOrderViewEntity uOrder = new UserOrderViewBuilder()
+                        .setIdorder(uos.getInt("idorder"))
                         .setNameprod(uos.getString("nameprod"))
                         .setTypename(uos.getString("typename"))
                         .setNamemanuf(uos.getString("namemanuf"))

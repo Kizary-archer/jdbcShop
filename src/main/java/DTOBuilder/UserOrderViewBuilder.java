@@ -3,12 +3,18 @@ package DTOBuilder;
 import DTO.UserOrderViewEntity;
 
 public class UserOrderViewBuilder {
+    private Integer idorder;
     private String nameprod;
     private String typename;
     private String namemanuf;
     private Long price;
     private Integer count;
     private Long finalprice;
+
+    public UserOrderViewBuilder setIdorder(Integer idorder) {
+        this.idorder = idorder;
+        return this;
+    }
 
     public UserOrderViewBuilder setNameprod(String nameprod) {
         this.nameprod = nameprod;
@@ -40,6 +46,6 @@ public class UserOrderViewBuilder {
         return this;
     }
     public UserOrderViewEntity build(){
-        return new UserOrderViewEntity(nameprod,typename,namemanuf,price,count,finalprice);
+        return new UserOrderViewEntity(idorder,nameprod,typename,namemanuf,price,count,finalprice);
     }
 }

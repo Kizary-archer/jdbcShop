@@ -3,6 +3,7 @@ package DTO;
 import java.util.Objects;
 
 public class UserOrderViewEntity {
+    private Integer idorder;
     private String nameprod;
     private String typename;
     private String namemanuf;
@@ -13,13 +14,22 @@ public class UserOrderViewEntity {
     public UserOrderViewEntity() {
     }
 
-    public UserOrderViewEntity(String nameprod, String typename, String namemanuf, Long price, Integer count, Long finalprice) {
+    public UserOrderViewEntity(Integer idorder, String nameprod, String typename, String namemanuf, Long price, Integer count, Long finalprice) {
+        this.idorder = idorder;
         this.nameprod = nameprod;
         this.typename = typename;
         this.namemanuf = namemanuf;
         this.price = price;
         this.count = count;
         this.finalprice = finalprice;
+    }
+
+    public Integer getIdorder() {
+        return idorder;
+    }
+
+    public void setIdorder(Integer idorder) {
+        this.idorder = idorder;
     }
 
     public String getNameprod() {
