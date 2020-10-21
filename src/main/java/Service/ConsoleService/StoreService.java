@@ -1,6 +1,9 @@
 package Service.ConsoleService;
 
 import DTO.UserOrderViewEntity;
+import DTOBuilder.ProductBuilder;
+import DTOBuilder.UserOrderBuilder;
+import Service.OrderService;
 import Service.UserService;
 import Util.ScannerFactoryUtil;
 
@@ -23,7 +26,7 @@ public class StoreService {
                     case 0:
                         return;
                     case 1:
-                        // authorization();
+                        addOrder();
                         break;
                     case 2:
                         userOrderList();
@@ -57,6 +60,22 @@ public class StoreService {
         System.out.println("Введите номер заказа");
         if(userService.deleteUserOrder(scanner.nextInt())) System.out.println("Заказ удалён");
         else System.out.println("Данного заказа не существует");
+    }
+    private void addOrder(){
+        OrderService orderService = new OrderService();
+        ProductBuilder builder = new ProductBuilder();
+        System.out.println("Выберите категорию\n---------------------------");
+        orderService.prodTypeList().forEach(v ->
+                        System.out.println(v.getIdtype()+" : " + v.getTypename())
+                );
+        builder.setType(scanner.nextInt());
+        System.out.println("---------------------------\nВыберите компанию:\n---------------------------");
+        orderService.manufList().forEach(v ->
+                System.out.println(v.getIdmanuf()+" : " + v.getNamemanuf())
+        );
+        System.out.println("---------------------------");
+        builder.setManufacture(scanner.nextInt());
+
     }
 }
 

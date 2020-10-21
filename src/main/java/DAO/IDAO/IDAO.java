@@ -12,7 +12,7 @@ public interface IDAO<T> {
     default Connection getConnection() {
         return DBConnectUtil.getConnection();
     }
-    boolean add(T t) throws SQLException;
+    boolean add(T t);
     boolean del(T t);
-    List<T> list() throws SQLException;
+    List<T> list();
 }

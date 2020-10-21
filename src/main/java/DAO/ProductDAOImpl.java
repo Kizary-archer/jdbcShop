@@ -12,7 +12,7 @@ import java.util.List;
 
 public class ProductDAOImpl implements IProductDAO {
     @Override
-    public boolean add(ProductEntity productEntity) throws SQLException {
+    public boolean add(ProductEntity productEntity){
         Connection connection = getConnection();
         try {
             String sql = "INSERT INTO public.product (nameprod,manufacture,\"type\",price) VALUES (?,?,?,?)";
@@ -43,7 +43,7 @@ public class ProductDAOImpl implements IProductDAO {
     }
 
     @Override
-    public List<ProductEntity> list() throws SQLException {
+    public List<ProductEntity> list() {
         List<ProductEntity> res = new LinkedList<>();
         try {
             Statement statement = getConnection().createStatement();
