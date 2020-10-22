@@ -1,6 +1,6 @@
 package DTOBuilder;
 
-import DTO.UserEntity;
+import Entityes.UserEntity;
 
 public class UserBuilder {
 

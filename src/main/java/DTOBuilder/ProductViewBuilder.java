@@ -1,6 +1,6 @@
 package DTOBuilder;
 
-import DTO.ProductViewEntity;
+import Entityes.ProductViewEntity;
 
 public class ProductViewBuilder {
     private Integer idproduct;

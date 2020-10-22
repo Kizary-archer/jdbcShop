@@ -1,6 +1,6 @@
 package DTOBuilder;
 
-import DTO.UserOrderEntity;
+import Entityes.UserOrderEntity;
 
 public class UserOrderBuilder {
 

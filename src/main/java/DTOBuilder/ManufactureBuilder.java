@@ -1,6 +1,6 @@
 package DTOBuilder;
 
-import DTO.ManufactureEntity;
+import Entityes.ManufactureEntity;
 
 public class ManufactureBuilder {
     private Integer idmanuf;

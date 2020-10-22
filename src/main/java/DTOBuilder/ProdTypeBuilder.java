@@ -1,6 +1,6 @@
 package DTOBuilder;
 
-import DTO.ProdTypeEntity;
+import Entityes.ProdTypeEntity;
 
 public class ProdTypeBuilder {
     private Integer idtype;

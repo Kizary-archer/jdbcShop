@@ -1,6 +1,6 @@
 package DTOBuilder;
 
-import DTO.UserOrderViewEntity;
+import Entityes.UserOrderViewEntity;
 
 public class UserOrderViewBuilder {
     private Integer idorder;

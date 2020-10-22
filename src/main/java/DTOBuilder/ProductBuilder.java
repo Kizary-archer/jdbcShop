@@ -1,6 +1,6 @@
 package DTOBuilder;
 
-import DTO.ProductEntity;
+import Entityes.ProductEntity;
 
 public class ProductBuilder {
 
