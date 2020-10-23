@@ -13,14 +13,14 @@ public class UserDAOImpl implements UserDAO {
         try {
             session = getSession();
             session.beginTransaction();
-            String hql = "from UserEntity where login = ?";
+            String hql = "from UserEntity where login = :login";
             Query query = session.createQuery(hql);
-            query.setParameter(0, login);
+            query.setParameter("login", login);
             UserEntity res = (UserEntity) query.getSingleResult();
             session.getTransaction().commit();
             return res;
         } catch (Exception e) {
-            System.out.println(e);
+            e.printStackTrace();
             return null;
         } finally {
             if (session != null && session.isOpen()) {

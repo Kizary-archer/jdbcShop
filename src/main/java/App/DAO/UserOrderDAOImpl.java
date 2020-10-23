@@ -28,7 +28,7 @@ public class UserOrderDAOImpl implements UserOrderDAO {
             session.getTransaction().commit();
             return res;
         } catch (Exception e) {
-            System.out.println(e);
+            e.printStackTrace();
             return null;
         } finally {
             if (session != null && session.isOpen()) {
@@ -46,11 +46,11 @@ public class UserOrderDAOImpl implements UserOrderDAO {
             String hql = "select distinct  m " +
                     "from ManufactureEntity m ";
             Query query = session.createQuery(hql);
-            List<ManufactureEntity> res = (List<ManufactureEntity>) query.getResultStream();
+            List<ManufactureEntity> res = (List<ManufactureEntity>) query.getResultList();
             session.getTransaction().commit();
             return res;
         } catch (Exception e) {
-            System.out.println(e);
+            e.printStackTrace();
             return null;
         } finally {
             if (session != null && session.isOpen()) {
@@ -68,11 +68,11 @@ public class UserOrderDAOImpl implements UserOrderDAO {
             String hql = "select distinct  p " +
                     "from ProdTypeEntity p ";
             Query query = session.createQuery(hql);
-            List<ProdTypeEntity> res = (List<ProdTypeEntity>) query.getResultStream();
+            List<ProdTypeEntity> res = (List<ProdTypeEntity>) query.getResultList();
             session.getTransaction().commit();
             return res;
         } catch (Exception e) {
-            System.out.println(e);
+            e.printStackTrace();
             return null;
         } finally {
             if (session != null && session.isOpen()) {

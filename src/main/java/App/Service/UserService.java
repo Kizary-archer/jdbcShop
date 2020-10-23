@@ -7,9 +7,8 @@ import org.mindrot.jbcrypt.BCrypt;
 
 public class UserService {
     UserDAO userDAO = new UserDAOImpl();
-    public UserEntity authorization (UserEntity usersEntity){
-        String pass = usersEntity.getPassword();
-        UserEntity user = userDAO.getUserByLogin(usersEntity.getLogin());
+    public UserEntity authorization (String login,String pass){
+        UserEntity user = userDAO.getUserByLogin(login);
         if(BCrypt.checkpw(pass, user.getPassword()))return user;
         else return null;
     }

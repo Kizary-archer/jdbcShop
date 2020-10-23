@@ -17,11 +17,11 @@ public class ProductDAOImpl implements ProductDAO {
             String hql = "select distinct  p " +
                     "from ProductViewEntity p ";
             Query query = session.createQuery(hql);
-            List<ProductViewEntity> res = (List<ProductViewEntity>) query.getResultStream();
+            List<ProductViewEntity> res = (List<ProductViewEntity>) query.getResultList();
             session.getTransaction().commit();
             return res;
         } catch (Exception e) {
-            System.out.println(e);
+            e.printStackTrace();
             return null;
         } finally {
             if (session != null && session.isOpen()) {
