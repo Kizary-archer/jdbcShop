@@ -17,8 +17,6 @@
 
         <hibernate-version>5.4.22.Final</hibernate-version>
     </properties>
-
-
     <dependencies>
         <dependency>
             <groupId>javax.servlet</groupId>
